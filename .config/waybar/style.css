@@ -1,0 +1,109 @@
+/* Тёмно-фиолетовая, мягкая, полупрозрачная тема */
+* {
+  font-family: "JetBrainsMono Nerd Font", "FiraCode Nerd Font", monospace;
+  font-size: 12pt;
+}
+
+@define-color bg rgba(20, 12, 35, 0.40);      /* основной фон: тёмно-фиолетовый, прозрачный */
+@define-color bg-hover rgba(32, 18, 55, 0.55);
+@define-color bg-active rgba(60, 30, 95, 0.70);
+@define-color fg #C4B0D8;                     /* светло-лиловый текст */
+@define-color accent #A88CFF;                 /* акцент */
+@define-color warn #E6B450;                   /* предупреждения */
+@define-color crit #FF6E6E;                   /* критичное */
+
+window#waybar {
+  background: @bg; 
+  color: @fg;
+}
+
+/* общая “капсула” для модулей */
+#waybar > box {
+  background: @bg;
+  border: 1px solid rgba(168, 140, 255, 0.25);
+  border-radius: 18px;
+  padding: 4px 8px;
+  margin: 0 6px;
+  box-shadow: 0 6px 22px rgba(5, 0, 20, 0.35);
+}
+
+/* кнопки рабочих столов */
+#workspaces button {
+  color: @fg;
+  background: transparent;
+  border-radius: 14px;
+  padding: 2px 10px;
+  margin: 2px 4px;
+  transition: 150ms ease;
+}
+#workspaces button:hover { background: @bg-hover; }
+#workspaces button.active { background: @bg-active; color: white; }
+#workspaces button.urgent { background: @crit; color: #10091A; }
+
+/* отступы/пилюли для каждого виджета */
+#clock,
+#pulseaudio,
+#custom-notifications,
+#cpu,
+#memory,
+#battery,
+#custom-terminal,
+#custom-zapret,
+#custom-network_speed,
+#custom-nightmode,
+#custom-wlogout {
+  padding: 4px 10px;
+  margin: 0 4px;
+  background: rgba(0,0,0,0.10);
+  border-radius: 14px;
+}
+
+/* ховеры */
+#clock:hover,
+#pulseaudio:hover,
+#custom-notifications:hover,
+#cpu:hover,
+#memory:hover,
+#battery:hover,
+#custom-terminal:hover,
+#custom-zapret:hover,
+#custom-network_speed:hover,
+#custom-nightmode:hover,
+#custom-wlogout:hover {
+  background: @bg-hover;
+}
+
+/* активные/кликаемые */
+#custom-terminal:active,
+#custom-zapret:active,
+#pulseaudio:active,
+#custom-nightmode:active,
+#custom-wlogout:active {
+  background: @bg-active;
+}
+
+/* цвета для состояний батареи */
+#battery.warning { color: @warn; }
+#battery.critical { color: @crit; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { color: rgba(255,255,255,0.6); } }
+
+/* звук — приглушённый */
+#pulseaudio.muted { opacity: 0.6; }
+
+/* всплывающие подсказки */
+tooltip {
+  background: rgba(20, 12, 35, 0.9);
+  border: 1px solid rgba(168, 140, 255, 0.3);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(5, 0, 20, 0.5);
+}
+tooltip label { color: @fg; }
+
+/* колокольчик уведомлений */
+#custom-notifications { color: @accent; }
+
+/* часы в центре чуть крупнее */
+#clock { font-weight: 600; letter-spacing: 0.3px; }
+
+/* аккуратные разделители */
+#waybar separator { color: rgba(218, 212, 234, 0.25); }

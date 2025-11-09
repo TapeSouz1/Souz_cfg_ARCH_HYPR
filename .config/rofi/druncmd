@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Путь к AppImage
+BETTERDISCORD="/usr/bin/betterdiscord"
+
+if [ ! -f "$BETTERDISCORD" ]; then
+    echo "Error: BetterDiscord not found"
+    exit 1
+fi
+
+# Запуск
+exec "$BETTERDISCORD"

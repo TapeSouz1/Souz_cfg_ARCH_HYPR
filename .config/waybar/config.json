@@ -1,0 +1,122 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 42,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
+
+  "modules-left": [
+    "custom/terminal",
+    "hyprland/workspaces"
+  ],
+
+  "modules-center": [
+    "clock"
+  ],
+
+  "modules-right": [
+    "custom/zapret",
+    "pulseaudio",
+    "custom/network_speed",
+    "custom/notifications",
+    "custom/nightmode",
+    "cpu",
+    "memory",
+    "custom/wlogout",
+    "battery"
+  ],
+
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": false,
+    "format": "{name}",
+    "on-click": "activate",
+    "sort-by-number": true
+  },
+
+  "clock": {
+    "format": "{:%H:%M}",
+    "tooltip-format": "{:%A, %d %B %Y}",
+    "interval": 1,
+    "on-click": "kitty --hold cal"
+  },
+
+  "custom/terminal": {
+    "format": "",
+    "tooltip": "Открыть терминал (kitty)",
+    "on-click": "kitty",
+    "signal": 1
+  },
+
+  "custom/zapret": {
+    "format": "🛡",
+    "tooltip": "Запустить zapret в терминале",
+    "on-click": "kitty --hold zapret"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 0%",
+    "format-icons": {
+      "headphones": "",
+      "default": ["","",""]
+    },
+    "scroll-step": 3,
+    "on-click": "pavucontrol"
+  },
+
+  "custom/network_speed": {
+    "exec": "~/.config/waybar/scripts/network_speed.sh",
+    "interval": 1,
+    "format": "{}",
+    "tooltip": "Скорость сети (вход/выход)",
+    "on-click": "kitty --hold sh -lc '~/.config/waybar/scripts/network_speed.sh --watch'"
+  },
+
+  "custom/notifications": {
+    "format": " ",
+    "tooltip": false,
+    "on-click": "makoctl dismiss -a"
+  },
+
+  "custom/nightmode": {
+    "exec": "~/.config/waybar/scripts/night_mode.sh",
+    "interval": 5,
+    "format": "{}",
+    "tooltip": "Ночной режим (лкм — переключить)",
+    "on-click": "~/.config/waybar/scripts/toggle_night_mode.sh"
+  },
+
+  "cpu": {
+    "format": " {usage}%",
+    "tooltip": true,
+    "interval": 2
+  },
+
+  "memory": {
+    "format": " {percentage}%",
+    "interval": 3,
+    "tooltip": true
+  },
+
+  "custom/wlogout": {
+    "format": "",
+    "tooltip": "wlogout",
+    "on-click": "wlogout"
+  },
+
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% 󰂄",
+    "format-plugged": "{capacity}% 󰚥",
+    "format-alt": "{time} {icon}",
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format-icons": ["󰁺","󰁼","󰁿","󰂂","󰁹"],
+    "tooltip": true,
+    "interval": 10
+  }
+}
